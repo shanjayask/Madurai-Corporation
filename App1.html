@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madurai Corporation App</title>
+
+<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.page {
+    display: none;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.active { display: block; }
+
+.center-box, .form-container, .thankyou {
+    background: rgba(255,255,255,0.95);
+    padding: 50px;
+    border-radius: 20px;
+    max-width: 750px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+h1 { color: #1A5490; }
+h2 { color: #2C3E50; }
+h3 { color: #16A085; margin-top: 20px; }
+
+p { color: #34495E; }
+
+button, .upload-btn {
+    width: 100%;
+    padding: 15px;
+    background: #27AE60;
+    color: white;
+    border: none;
+    font-size: 17px;
+    border-radius: 10px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+button:hover, .upload-btn:hover { background: #1E8449; }
+
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #BDC3C7;
+    margin-top: 8px;
+    font-size: 15px;
+}
+
+input[readonly] {
+    background: #ECF0F1;
+}
+
+input[type="file"] {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page active" style="background-image:url('https://img.freepik.com/premium-photo/lines-people-with-india-map-flag-vector-illustration_1057738-28371.jpg?w=2000');">
+  <div class="center-box">
+    <h1>Welcome to the Madurai Corporation</h1>
+    <h2>Together for a Cleaner, Greener, and Better Madurai</h2>
+    <p><b>♻️ Clean Up, Green Up 🌱</b></p>
+    <button onclick="nextPage('page2')">Next</button>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page" style="background-image:url('https://www.yogiraj.co.in/wp-content/uploads/2023/11/slogan-on-air-pollution-1536x878.jpeg');">
+  <div class="center-box">
+    <h1>🌍 Small Act, Big Impact 💪</h1>
+
+    <h3>✨ Vision</h3>
+    <p><b>Meenakshi Temple inspires citizens to protect Madurai’s cleanliness, purity, and respect.</b></p>
+
+    <h3>🚀 Mission</h3>
+    <p><b>Ensuring waste management, clean streets, recycling, awareness, and strict enforcement.</b></p>
+
+    <h3>📞 Contact Numbers</h3>
+    <p><b>+91 9488658940<br>+91 8667806009</b></p>
+
+    <button onclick="nextPage('page3')">Next</button>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="page" style="background-image:url('https://img.freepik.com/premium-photo/illustration-plant-seed-growing-earth-concept-earth-day-green-background-copy-space_1082886-1479.jpg');">
+  <div class="form-container">
+    <h3>🌐 Language</h3>
+    <p id="langQuote"><b>🌐 Your language is your identity</b></p>
+
+    <select onchange="changeLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="ta">தமிழ் (Tamil)</option>
+      <option value="hi">हिंदी (Hindi)</option>
+    </select>
+
+    <h2 id="formTitle">Enter Your Details</h2>
+
+    <input id="name" placeholder="Name">
+    <input id="fromEmail" placeholder="From (Your Email ID)">
+    <input id="toEmail" value="maduraicorporation@tn.gov.in" readonly>
+    <input id="phone" placeholder="Phone Number">
+    <input id="address" placeholder="Address">
+
+    <button onclick="nextPage('page4')">Next</button>
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+<div id="page4" class="page" style="background-image:url('https://static.vecteezy.com/system/resources/previews/002/186/825/large_2x/people-caring-for-the-environment-on-earth-day-free-vector.jpg');">
+  <div class="form-container">
+    <h2 id="complaintTitle">Write Your Complaint</h2>
+    <textarea id="complaintBox" rows="6" placeholder="Describe the issue..."></textarea>
+
+    <label id="uploadLabel" class="upload-btn" for="photoInput">Upload Photo</label>
+    <input id="photoInput" type="file">
+
+    <button onclick="nextPage('page5')">Submit</button>
+  </div>
+</div>
+
+<!-- PAGE 5 -->
+<div id="page5" class="page" style="background-image:url('https://static.vecteezy.com/system/resources/previews/026/746/188/non_2x/illustration-image-nature-and-sustainability-eco-friendly-living-and-conservation-concept-art-of-earth-and-animal-life-in-different-environments-generative-ai-illustration-free-photo.jpg');">
+  <div class="thankyou">
+    <h1>✅ Thank You</h1>
+    <p>Your complaint has been successfully submitted.</p>
+    <h3>🌍 Save Earth, Save Life</h3>
+  </div>
+</div>
+
+<script>
+const langData = {
+  en: {
+    quote: "🌐 Your language is your identity",
+    title: "Enter Your Details",
+    name: "Name",
+    fromEmail: "From (Your Email ID)",
+    phone: "Phone Number",
+    address: "Address",
+    complaintTitle: "Write Your Complaint",
+    complaintPlaceholder: "Describe the issue...",
+    upload: "Upload Photo"
+  },
+  ta: {
+    quote: "🌐 உங்கள் மொழி உங்கள் அடையாளம்",
+    title: "உங்கள் விவரங்களை உள்ளிடவும்",
+    name: "பெயர்",
+    fromEmail: "அனுப்புநர் மின்னஞ்சல்",
+    phone: "தொலைபேசி எண்",
+    address: "முகவரி",
+    complaintTitle: "உங்கள் புகாரை எழுதுங்கள்",
+    complaintPlaceholder: "உங்கள் பிரச்சனையை விவரிக்கவும்...",
+    upload: "புகைப்படத்தை பதிவேற்றவும்"
+  },
+  hi: {
+    quote: "🌐 आपकी भाषा आपकी पहचान है",
+    title: "अपना विवरण दर्ज करें",
+    name: "नाम",
+    fromEmail: "प्रेषक ईमेल",
+    phone: "फ़ोन नंबर",
+    address: "पता",
+    complaintTitle: "अपनी शिकायत लिखें",
+    complaintPlaceholder: "अपनी समस्या का विवरण दें...",
+    upload: "फोटो अपलोड करें"
+  }
+};
+
+function changeLanguage(lang) {
+  document.getElementById("langQuote").innerHTML = "<b>" + langData[lang].quote + "</b>";
+  document.getElementById("formTitle").innerText = langData[lang].title;
+
+  document.getElementById("name").placeholder = langData[lang].name;
+  document.getElementById("fromEmail").placeholder = langData[lang].fromEmail;
+  document.getElementById("phone").placeholder = langData[lang].phone;
+  document.getElementById("address").placeholder = langData[lang].address;
+
+  document.getElementById("complaintTitle").innerText = langData[lang].complaintTitle;
+  document.getElementById("complaintBox").placeholder = langData[lang].complaintPlaceholder;
+  document.getElementById("uploadLabel").innerText = langData[lang].upload;
+}
+
+function nextPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
+
+</body>
+</html>
